@@ -2,8 +2,8 @@
 
 /* appearance */
 static unsigned int borderpx  			= 1;       	/* border pixel of windows */
-static const int startwithgaps[]    = { 0 };    /* 1 means gaps are used by default, this can be customized for each tag */
-static const unsigned int gappx[]   = { 10 };   /* default gap between windows in pixels, this can be customized for each tag */
+static const int startwithgaps[]    = { 1 };    /* 1 means gaps are used by default, this can be customized for each tag */
+static const unsigned int gappx[]   = { 5 };    /* default gap between windows in pixels, this can be customized for each tag */
 static unsigned int snap      			= 32;       /* snap pixel */
 static int showbar            			= 1;        /* 0 means no bar */
 static int topbar             			= 1;        /* 0 means bottom bar */
@@ -11,13 +11,13 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray             = 1;   /* 0 means no systray */
-static const int vertpad            = 10;        /* vertical padding of bar */
-static const int sidepad            = 10;        /* horizontal padding of bar */
-static const int horizpadbar        = 2;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 0;        /* vertical padding for statusbar */
+static const int vertpad            = 5;        /* vertical padding of bar */
+static const int sidepad            = 5;        /* horizontal padding of bar */
+static const int horizpadbar        = 8;        /* horizontal padding for statusbar */
+static const int vertpadbar         = 8;        /* vertical padding for statusbar */
 static const int focusonwheel       = 0;
-static char font[]            			= "monospace:size=10";
-static char dmenufont[]       			= "monospace:size=10";
+static char font[]            			= "FiraCode Nerd Font:style:Medium:size=11";
+static char dmenufont[]       			= "FiraCode Nerd Font:style:Medium:size=11";
 static const char *fonts[]          = { font };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -25,12 +25,12 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-static const unsigned int baralpha  = 0xd0;
+static const unsigned int baralpha  = 127;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	/*               fg           bg           border   */
+	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -39,8 +39,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-static const char *alttags[] = { "<01>", "<02>", "<03>", "<04>", "<05>" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
+static const char *alttags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -49,7 +49,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 2,       0,           -1 },
 };
 
 /* layout(s) */
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -107,8 +107,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },

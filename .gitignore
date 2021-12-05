@@ -5,3 +5,4 @@ dwm
 # dev stuff
 patches/
 *.bak.*
+config.h
